@@ -1,0 +1,68 @@
+body {
+  font-family: "Raleway", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-left: 1.66%;
+  margin-right: 1.66%;
+  padding-bottom: 20px;
+  color: #3e5c66;
+}
+
+h1 {
+  font-size: 3rem;
+  color: #636b6e;
+}
+
+h2 {
+  font-size: 2.5rem;
+  color: #636b6e;
+}
+
+h3 {
+  font-size: 2rem;
+  color: #42484a;
+}
+
+h4 {
+  font-size: 2.5rem;
+  text-align: center;
+  font-family: "Dancing Script", cursive;
+}
+
+img {
+  padding-top: 50px;
+  padding-bottom: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.meatballImage {
+  display: inline;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+p {
+  margin-left: 1.66%;
+  margin-right: 1.66%;
+  padding-bottom: 10px;
+}
+
+ul li {
+  padding-top: 10px;
+}
+
+ol li {
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding-top: 20px;
+  color: #325561;
+}
+
+ol li ul li {
+  font-size: 18px;
+  font-weight: 500;
+  margin-right: 1.66%;
+  color: #3e5c66;
+}
