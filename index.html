@@ -9,6 +9,7 @@
   </head>
 
   <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <h1>Vietnamese Vermicelli Noodles with Grilled Pork (Bun Cha)</h1>
     <p>
       The content of this website is based on the recipe
@@ -68,7 +69,6 @@
           <li>Oyster sauce</li>
         </ul>
       </li>
-
       <li>
         Side Pickles
         <ul>
@@ -107,6 +107,18 @@
         </ul>
       </li>
     </ul>
+    <form action="" method="post">
+      Enter a new item:
+      <input type="text" name="newIngredient" id="newIngredient" /><label
+        for="newIngredient"
+        >Add another ingredient</label
+      ></br>
+      <input type="submit" value="Add it!" id="addNewBtn" /><label
+        for="addNewBtn"
+        >Click to add another ingredient</label
+      ></br>
+    </form>
+
     <button id="hideIngredientBtn">Hide ingredients one by one</button>
 
     <h3>Instructions</h3>
