@@ -107,19 +107,16 @@
         </ul>
       </li>
     </ul>
-    <form action="" method="post">
-      Enter a new item:
-      <input type="text" name="newIngredient" id="newIngredient" /><label
-        for="newIngredient"
-        >Add another ingredient</label
-      ></br>
-      <input type="submit" value="Add it!" id="addNewBtn" /><label
-        for="addNewBtn"
-        >Click to add another ingredient</label
-      ></br>
-    </form>
 
-    <button id="hideIngredientBtn">Hide ingredients one by one</button>
+    <button id="hideIngredientBtn" class="hideButton">
+      Hide ingredients one by one
+    </button>
+
+    <form action="" method="post">
+      <label for="newIngredient">Enter a new ingredient:</label>
+      <input type="text" name="newIngredient" id="newIngredient" />
+      <input type="submit" value="Add it!" id="addNewIngreBtn" />
+    </form>
 
     <h3>Instructions</h3>
     <button id="stepBtn">Show instructions step by step</button>
@@ -263,7 +260,16 @@
         />
       </li>
     </ol>
-    <button id="hideStepBtn">Hide instructions step by step</button>
+
+    <button id="hideStepBtn" class="hideButton">
+      Hide instructions step by step
+    </button>
+
+    <form action="" method="post">
+      <label for="newStep">Enter a new step:</label>
+      <input type="text" name="newStep" id="newStep" />
+      <input type="submit" value="Add it!" id="addNewStepBtn" />
+    </form>
 
     <h4>Watch the video below for more details</h4>
     <iframe

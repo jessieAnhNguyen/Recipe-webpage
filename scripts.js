@@ -1,90 +1,95 @@
-// don't execute any JS until after the DOM is loaded
-
-var ingredientCnt = 0;
-var stepCnt = 0;
-
 // hide all items at the beginning
-function hideAllItems(list, listLen) {
-  for (var i = 0; i < listLen; i++) {
-    list.children[i].style.display = "none";
-  }
+function hideAllItems(list) {
+  $(list).children().hide();
 }
 
 //display items one by one on click
-function displayItemsbyStep(btn, list, listLen) {
+function displayItemsbyStep(list) {
   // wait for the user to click the button, then "revert" (show item) the next
   //. item in the list
-  btn.addEventListener("click", function () {
-    var cnt;
-    if (list.id === "ingredientList") {
-      cnt = ingredientCnt;
-    } else {
-      cnt = stepCnt;
+
+  var children = $(list).children();
+  var listLen = $(list).children().length;
+  for (let cnt = 0; cnt < listLen; cnt++) {
+    var currChild = $(children).get(cnt);
+    if (!$(currChild).is(":visible")) {
+      $(currChild).show();
+      break;
     }
-    if (cnt < listLen) {
-      list.children[cnt].style.display = "revert";
-    }
-    if (cnt < listLen) {
-      cnt++;
-    }
-    if (list.id === "ingredientList") {
-      ingredientCnt = cnt;
-    } else {
-      stepCnt = cnt;
-    }
-  });
+  }
 }
 
 //hide items one by one on click
-function hideItemsByStep(btn, list) {
+function hideItemsByStep(list) {
   // wait for the user to click the button, then "none" (hide item) the next
   // item in the list
-  btn.addEventListener("click", function () {
-    var cnt;
-    if (list.id === "ingredientList") {
-      cnt = ingredientCnt;
-    } else {
-      cnt = stepCnt;
+  var children = $(list).children();
+  var listLen = $(list).children().length;
+  for (let cnt = listLen - 1; cnt >= 0; cnt--) {
+    var currChild = $(children).get(cnt);
+    if ($(currChild).is(":visible")) {
+      $(currChild).hide();
+      break;
     }
-    if (cnt > 0) cnt--;
-    if (cnt >= 0) {
-      list.children[cnt].style.display = "none";
-    }
-    if (list.id === "ingredientList") {
-      ingredientCnt = cnt;
-    } else {
-      stepCnt = cnt;
-    }
-  });
+  }
 }
 
-//main function
-document.addEventListener("DOMContentLoaded", function () {
+// wait for the document to load
+$(document).ready(function () {
   // create "handles" on the buttons from the HTML
-  var ingredientBtn = document.getElementById("ingredientBtn");
-  var stepBtn = document.getElementById("stepBtn");
+  var ingredientBtn = $("#ingredientBtn");
+  var stepBtn = $("#stepBtn");
 
   // create "handles" on the lists
-  var ingredientList = document.getElementById("ingredientList");
-  var stepList = document.getElementById("stepList");
-
-  // get the lengths of the lists
-  ingredientListLen = ingredientList.children.length;
-  stepListLen = stepList.children.length;
+  var ingredientList = $("#ingredientList");
+  var stepList = $("#stepList");
 
   // create "handles" on the hiding buttons from the HTML
-  var hideIngredientBtn = document.getElementById("hideIngredientBtn");
-  var hideStepBtn = document.getElementById("hideStepBtn");
+  var hideIngredientBtn = $("#hideIngredientBtn");
+  var hideStepBtn = $("#hideStepBtn");
+
+  //when user clicks the submit new ingredient button
+  $("#addNewIngreBtn").click(function () {
+    //check if the input text field is empty
+    if ($("#newIngredient").val()) {
+      let newItem = $("#newIngredient").val();
+      //append the new item to the list
+      $(ingredientList).append("<li>" + newItem + "</li>");
+      $("#newIngredient").val("");
+    }
+    return false;
+  });
+
+  //when user clicks the submit new step button
+  $("#addNewStepBtn").click(function () {
+    //check if the input text field is empty
+    if ($("#newStep").val()) {
+      let newItem = $("#newStep").val();
+      //append the new item to the list
+      $(stepList).append("<li>" + newItem + "</li>");
+      $("#newStep").val("");
+    }
+    return false;
+  });
 
   // for each item in the lists, set their display value to "none" (hide them)
-  hideAllItems(ingredientList, ingredientListLen);
-  hideAllItems(stepList, stepListLen);
+  hideAllItems(ingredientList);
+  hideAllItems(stepList);
 
   //display the items one by one when clicking the button
-  displayItemsbyStep(ingredientBtn, ingredientList, ingredientListLen);
-  displayItemsbyStep(stepBtn, stepList, stepListLen);
+  $(ingredientBtn).click(function () {
+    displayItemsbyStep(ingredientList);
+  });
+
+  $(stepBtn).click(function () {
+    displayItemsbyStep(stepList);
+  });
 
   //hide the items one by one when clicking the button
-  hideItemsByStep(hideIngredientBtn, ingredientList);
-  hideItemsByStep(hideStepBtn, stepList);
+  $(hideIngredientBtn).click(function () {
+    hideItemsByStep(ingredientList);
+  });
+  $(hideStepBtn).click(function () {
+    hideItemsByStep(stepList);
+  });
 });
