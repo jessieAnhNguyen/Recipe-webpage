@@ -1,5 +1,6 @@
-{%extends "base.html"%} {% block title %} Vietnamese Bun Cha {% endblock %}
-{%block content%}
+{% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block
+title %}Vietnamese Bun Cha{% endblock %} {% block page_content %}
+
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -101,7 +102,7 @@
         those beautifully charred pork pieces.
       </p>
       <img
-        src="./static/images/buncha2.jpg"
+        src="{{ url_for('static', filename='images/buncha2.jpg') }}"
         alt="Bun Cha image"
         width="1000"
         height="500"
@@ -115,9 +116,9 @@
     </div>
     <div class="panel-body">
       <h3>Ingredients</h3>
-      <button type="button" id="ingredientBtn" class="btn btn-info">
+      <!-- <button type="button" id="ingredientBtn" class="btn btn-info">
         Show ingredients one by one
-      </button>
+      </button> -->
       <ul id="ingredientList">
         <li>
           Vietnamese Caramel sauce
@@ -181,30 +182,13 @@
             </li>
           </ul>
         </li>
-        {%if newIngredient != None%}
-        <li id="addNewIngredient">{{newIngredient}}</li>
-        {% endif %}
+        {%if ingredient %}
+        <li id="addNewIngredient">{{ingredient}}</li>
+        {% endif %} {{ wtf.quick_form(form) }}
       </ul>
 
-      <button id="hideIngredientBtn" class="btn btn-secondary">
-        Hide ingredients one by one
-      </button>
-
-      <form action="" method="post">
-        <label for="newIngredient">Enter a new ingredient:</label>
-        <input type="text" name="newIngredient" id="newIngredient" />
-        <input
-          type="submit"
-          value="Add it!"
-          class="btn btn-success"
-          id="addNewIngreBtn"
-        />
-      </form>
-
       <h3>Instructions</h3>
-      <button id="stepBtn" class="btn btn-info">
-        Show instructions step by step
-      </button>
+
       <ol id="stepList">
         <li>
           Picking the Cut, Marinating and Grilling the Meat:
@@ -242,17 +226,26 @@
           <div class="row">
             <div class="col-lg-4">
               <div class="thumbnail">
-                <img src="./static/images/meatball.jpg" alt="Grilled pork" />
+                <img
+                  src="{{ url_for('static', filename='images/meatball.jpg') }}"
+                  alt="Grilled pork"
+                />
               </div>
             </div>
             <div class="col-lg-4">
               <div class="thumbnail">
-                <img src="./static/images/meatball2.jpg" alt="Grilled pork" />
+                <img
+                  src="{{ url_for('static', filename='images/meatball2.jpg') }}"
+                  alt="Grilled pork"
+                />
               </div>
             </div>
             <div class="col-lg-4">
               <div class="thumbnail">
-                <img src="./static/images/meatball3.jpg" alt="Grilled pork" />
+                <img
+                  src="{{ url_for('static', filename='images/meatball3.jpg') }}"
+                  alt="Grilled pork"
+                />
               </div>
             </div>
           </div>
@@ -307,7 +300,7 @@
             </li>
           </ul>
           <img
-            src="./static/images/dipping_sauce.jpg"
+            src="{{ url_for('static', filename='images/dipping_sauce.jpg') }}"
             alt="Dipping sauce and pickles"
             width="900"
             height="450"
@@ -336,28 +329,13 @@
             </li>
           </ul>
           <img
-            src="./static/images/dipping_sauce_2.jpg"
+            src="{{ url_for('static', filename='images/dipping_sauce_2.jpg') }}"
             alt="dipping sauce"
             height="400"
             width="550"
           />
         </li>
       </ol>
-
-      <button id="hideStepBtn" class="btn btn-secondary">
-        Hide instructions step by step
-      </button>
-
-      <form action="" method="post">
-        <label for="newStep">Enter a new step:</label>
-        <input type="text" name="newStep" id="newStep" />
-        <input
-          type="submit"
-          value="Add it!"
-          class="btn btn-success"
-          id="addNewStepBtn"
-        />
-      </form>
     </div>
   </div>
 
