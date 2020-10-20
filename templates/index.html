@@ -120,7 +120,7 @@ title %}Vietnamese Bun Cha{% endblock %} {% block page_content %}
         Show ingredients one by one
       </button> -->
       <ul id="ingredientList">
-        <li>
+        <!-- <li>
           Vietnamese Caramel sauce
           <ul>
             <li>70 grams (5 tbsp) sugar</li>
@@ -181,10 +181,14 @@ title %}Vietnamese Bun Cha{% endblock %} {% block page_content %}
               vermicelli noodles
             </li>
           </ul>
-        </li>
-        {%if ingredient %}
+        </li> -->
+        <!-- {%if ingredient %}
         <li id="addNewIngredient">{{ingredient}}</li>
-        {% endif %} {{ wtf.quick_form(form) }}
+        {% endif %} -->
+
+        {% for ingredient in ingredientList %}
+        <li>{{ingredient.ingredient}}</li>
+        {% endfor %} {{ wtf.quick_form(form) }}
       </ul>
 
       <h3>Instructions</h3>
