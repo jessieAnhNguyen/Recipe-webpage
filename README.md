@@ -7,4 +7,4 @@ The website is created by me as I started to learn Web development. The tech sta
 - Back-end: Flask, Jinja2, SQLite
 - Front-end: HTML/CSS, Bootstrap, JavaScript, jQuery
 
-You can run the web app at http://anguy39.digitalscholar.rochester.edu/assignment09/
+You can find the web app deployed at http://anguy39.digitalscholar.rochester.edu/assignment09/
