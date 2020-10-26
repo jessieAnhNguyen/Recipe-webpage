@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_bootstrap import Bootstrap
 from flask_moment import Moment
 from flask_wtf import FlaskForm
@@ -56,9 +56,40 @@ def index():
         #Push to database
         db.session.add(new_ingredient)
         db.session.commit()
+        flash('You successfully added a new ingredient ', 'success')
         return redirect(url_for('index'))
 
     else:
         ingredientList = Ingredients.query
         return render_template('index.html', form=form, ingredientList = ingredientList)
     
+@app.route('/update/<int:id>', methods=['GET', 'POST'])
+def update(id):
+    ingredient_to_update = Ingredients.query.get_or_404(id)
+    if request.method=="POST":
+        ingredient_to_update.ingredient = request.form['ingredient_name']
+        #Push to database
+        try:
+            db.session.commit()
+            flash('You successfully updated the ingredient ', 'success')
+            return redirect(url_for('index'))
+
+        except:
+            flash('There was an error updating the ingredient ', 'error')
+            return "There was a problem updating that ingredient"
+    else:
+        return render_template('update.html', ingredient_to_update= ingredient_to_update)
+
+@app.route('/delete/<int:id>', methods=['GET'])
+def delete(id):
+    ingredient_to_delete = Ingredients.query.get_or_404(id)
+    try:
+        #Delete from database
+        db.session.delete(ingredient_to_delete)
+        db.session.commit()
+        flash('You successfully deleted the ingredient ', 'success')
+        return redirect(url_for('index'))
+    
+    except:
+        flash('There was an error deleting the ingredient ', 'error')
+        return "There was a problem deleting that ingredient"
