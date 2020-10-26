@@ -68,6 +68,7 @@ title %}Vietnamese Bun Cha{% endblock %} {% block page_content %}
   </div>
   <!-- /.container-fluid -->
 </nav>
+
 <div class="container">
   <div class="jumbotron">
     <div class="container">
@@ -80,6 +81,15 @@ title %}Vietnamese Bun Cha{% endblock %} {% block page_content %}
         >.
       </p>
     </div>
+  </div>
+
+  <div class="container">
+    {% for category, message in get_flashed_messages(with_categories=true) %} {%
+    if category == 'success' %}
+    <div class="alert alert-success" role="alert">{{ message }}</div>
+    {% endif %} {% if category == 'error' %}
+    <div class="alert alert-danger" role="alert">{{ message }}</div>
+    {% endif %} {% endfor %}
   </div>
 
   <div class="panel panel-default">
@@ -187,7 +197,13 @@ title %}Vietnamese Bun Cha{% endblock %} {% block page_content %}
         {% endif %} -->
 
         {% for ingredient in ingredientList %}
-        <li>{{ingredient.ingredient}}</li>
+        <li>
+          {{ingredient.ingredient}}
+          <a href="/assignment10/update/{{ingredient.id}}">Update</a>
+          <a href="/assignment10/delete/{{ingredient.id}}" class="deleteButton"
+            >Delete</a
+          >
+        </li>
         {% endfor %} {{ wtf.quick_form(form) }}
       </ul>
 

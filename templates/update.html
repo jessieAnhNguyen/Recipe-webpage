@@ -1,0 +1,20 @@
+{% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block
+title %}Update Ingredient{% endblock %} {% block page_content %}
+
+<div class="container">
+  <h1>Update the ingredient name below</h1>
+  <br />
+  <form
+    action="/assignment10//update/{{ingredient_to_update.id}}"
+    method="POST"
+  >
+    <input
+      type="text"
+      placeholder="Ingredient name"
+      name="ingredient_name"
+      value="{{ingredient_to_update.ingredient}}"
+    />
+    <input type="submit" value="Update ingredient" />
+  </form>
+</div>
+{% endblock %}
